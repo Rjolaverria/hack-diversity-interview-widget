@@ -1,0 +1,22 @@
+.drift-sidebar-single-conversation-message {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.drift-sidebar-single-conversation-message-text {
+    background-color: cornflowerblue;
+    color: white;
+    padding: 8px 12px;
+    margin-bottom: 6px;
+    border-radius: 8px ;
+    width:fit-content
+}
+
+.drift-sidebar-single-conversation-message-time {
+    width: 100%;
+    font-size: .7rem;
+    color: rgba(0,0,0,0.7);
+    text-align: center;
+    margin-bottom: 12px;
+}

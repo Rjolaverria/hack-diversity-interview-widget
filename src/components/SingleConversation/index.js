@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 
+import Message from '../Message';
 import { sendMessage } from '../../modules/message/actions';
 import './style.css';
 
@@ -40,15 +41,27 @@ class SingleConversation extends PureComponent {
     } = this.state;
 
     return (
-      <div className="drift-sidebar-single-conversation--container">
-        <div className="drift-sidebar-single-conversation-body">
-          {messages.map(message => <div key={message.id}>{message.body}</div>)}
+        <div className='drift-sidebar-single-conversation--container'>
+            <div className='drift-sidebar-single-conversation-body'>
+                {messages.map((message) => (
+                    <Message
+                        key={message.id}
+                        message={message}
+                        messages={messages}
+                    />
+                ))}
+            </div>
+            {/* Should be moved to own component to prevent unnecessary re-renders */}
+            <div className='drift-sidebar-single-conversation-input'>
+                <input
+                    placeholder='Type and press enter to send'
+                    value={messageInput}
+                    onChange={this.onChangeInput}
+                    onKeyDown={this.maybeSubmit}
+                />
+            </div>
         </div>
-        <div className="drift-sidebar-single-conversation-input">
-          <input placeholder="Type and press enter to send" value={messageInput} onChange={this.onChangeInput} onKeyDown={this.maybeSubmit} />
-        </div>
-      </div>
-    )
+    );
   }
 }
 

@@ -16,3 +16,8 @@
   font-size: 14px;
   padding: 16px;
 }
+
+.drift-sidebar-single-conversation--container {
+  max-height: 60% ;
+  overflow: scroll;
+}
