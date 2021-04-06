@@ -7,13 +7,14 @@ const Message = ({ message: { body, createdAt } }) => {
         <div className='drift-sidebar-single-conversation-message'>
             {/* To Fix: Could appear multiple times and would not show if no message passes condition. */}
             {minutes > 0 && minutes % 5 === 0 && (
-                <span className='drift-sidebar-single-conversation-message-time'>
+                <span className='drift-sidebar-single-conversation-message-timestamp'>
                     {minutes} minutes ago
                 </span>
             )}
-            <span className='drift-sidebar-single-conversation-message-text'>
-                {body}
-            </span>
+            <div className='drift-sidebar-single-conversation-message-text'>
+                <p>{body}</p>
+                <span>{new Date(createdAt).toLocaleString()}</span>
+            </div>
         </div>
     );
 };
