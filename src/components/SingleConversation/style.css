@@ -21,3 +21,22 @@
   max-height: 60% ;
   overflow: scroll;
 }
+
+.drift-sidebar-single-conversation-error {
+  color: white;
+  background-color: rgb(235, 135, 135) ;
+  padding: 10px;
+  font-size: 0.9rem;
+}
+
+.error {
+    border: 2px solid rgb(235, 135, 135) !important;
+}
+
+.retry-btn {
+  color: rgb(235, 135, 135);
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 4px;
+  margin: 0 5px;
+}
