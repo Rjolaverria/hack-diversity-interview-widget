@@ -5,11 +5,11 @@
 }
 
 .drift-sidebar-single-conversation-message-text {
-    background-color: cornflowerblue;
+    background: rgb(10, 91, 255);
     color: white;
     padding: 8px 12px;
-    margin-bottom: 6px;
-    border-radius: 8px;
+    margin-bottom: 2px;
+    border-radius: 10px;
     width:fit-content;
     display: flex;
     flex-direction: column;
@@ -18,16 +18,10 @@
 .drift-sidebar-single-conversation-message-text > p {
     text-align: right;
     margin-top: 0;
-    margin-bottom: 6px;
+    margin-bottom:0;
 }
-.drift-sidebar-single-conversation-message-text > span {
+.drift-sidebar-single-conversation-message > span {
     font-size: 0.5rem;
-}
-
-.drift-sidebar-single-conversation-message-timestamp {
-    width: 100%;
-    font-size: .7rem;
     color: rgba(0,0,0,0.7);
-    text-align: center;
     margin-bottom: 12px;
 }

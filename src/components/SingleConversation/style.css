@@ -29,6 +29,15 @@
   font-size: 0.9rem;
 }
 
+.drift-sidebar-single-conversation-message-timestamp {
+    width: 100%;
+    font-size: .7rem;
+    color: rgba(0,0,0,0.7);
+    text-align: center;
+    margin: 12px auto;
+    display:block;
+}
+
 .error {
     border: 2px solid rgb(235, 135, 135) !important;
 }
