@@ -16,14 +16,19 @@ class SingleConversation extends PureComponent {
     componentDidUpdate(prevProps) {
         let error = this.props.error;
         let prevError = prevProps.error;
-        this.endRef.current.scrollIntoView({ behavior: 'smooth' });
-        if (error && error.name === 'InternalServerError' && !prevError) {
+        if (
+            error &&
+            error.name === 'InternalServerError' &&
+            (!prevError || prevError.name !== 'InternalServerError')
+        ) {
             this.setState({
                 messageInput: error.failedMessage.body,
             });
         } else {
             this.setState({ messageInput: this.state.messageInput });
         }
+
+        this.endRef.current.scrollIntoView({ behavior: 'smooth' });
     }
 
     onChangeInput = (e) => {
@@ -54,6 +59,19 @@ class SingleConversation extends PureComponent {
 
         const { messageInput } = this.state;
 
+        let timeStampMap = new Map();
+
+        messages.forEach((message) => {
+            let timeGroup = Math.floor(
+                (Date.now() - message.createdAt) / (60000 * 5)
+            );
+            if (timeStampMap.has(timeGroup)) {
+                timeStampMap.get(timeGroup).push(message);
+            } else {
+                timeStampMap.set(timeGroup, [message]);
+            }
+        });
+
         return (
             <>
                 {error && error.name ? (
@@ -75,12 +93,21 @@ class SingleConversation extends PureComponent {
                 ) : null}
                 <div className='drift-sidebar-single-conversation--container'>
                     <div className='drift-sidebar-single-conversation-body'>
-                        {messages.map((message) => (
-                            <Message
-                                key={message.id}
-                                message={message}
-                                messages={messages}
-                            />
+                        {[...timeStampMap.keys()].map((timestamp) => (
+                            <div key={timestamp}>
+                                <span className='drift-sidebar-single-conversation-message-timestamp'>
+                                    {timestamp > 0
+                                        ? `${timestamp * 5} mins ago`
+                                        : 'Now'}
+                                </span>
+                                {timeStampMap.get(timestamp).map((message) => (
+                                    <Message
+                                        key={message.id}
+                                        message={message}
+                                        messages={messages}
+                                    />
+                                ))}
+                            </div>
                         ))}
                         <div ref={this.endRef} />
                     </div>
